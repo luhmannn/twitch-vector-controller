@@ -13,3 +13,6 @@ class TwitchParser(object):
 
     def has_command(self, data):
         return re.findall(r'PRIVMSG #[a-zA-Z0-9_]+ :(\![a-zA-Z0-9_]+) (.+)', data)
+
+    def contains_ping(self, data):
+        return re.match(r'^PING :tmi\.twitch\.tv\r\n$', data)
