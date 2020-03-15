@@ -63,12 +63,14 @@ class Chatbot():
             command = message['command'][0]
             value = message['command'][1]
 
+            print ('%s - %s' % (command, value))
+
             action = self.actions.get(command)
             if (action):
                 try:
                     action.perform(value)
                 except Exception as err:
-                    print (err)
+                    print(err)
 
 
 

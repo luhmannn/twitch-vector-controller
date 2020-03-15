@@ -1,4 +1,5 @@
-from src.vectorsay import VectorSay
+from src.vector.vector_say import VectorSay
+from src.vector.vector_banana_eyes import VectorBananaEyes
 
 class ActionResolver():
 
