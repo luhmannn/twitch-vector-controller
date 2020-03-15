@@ -4,5 +4,5 @@ from Vectorbot import Vectorbot
 
 if __name__ == "__main__":
     parser = TwitchParser()
-    vectorbot = Vectorbot()
-    vector = Vector(parser, vectorbot)
+    vector = Vector()
+    chatbot = Chatbot(parser, vectorbot)
