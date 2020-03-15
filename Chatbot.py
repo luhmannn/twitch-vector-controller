@@ -2,10 +2,10 @@ import socket
 
 class Chatbot():
 
-    def __init__(self, parser, vectorbot):
+    def __init__(self, parser, vectorbot, oauth):
         self.host = "irc.chat.twitch.tv"
         self.port = 6667
-        self.oauth = "oauth:r2rkgy2v5icz0muo3jl9yqb7vf9l6n"
+        self.oauth = oauth
         self.name = "luhbert"
         self.channel = "luhmannn"
         self.parser = parser
