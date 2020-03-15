@@ -1,11 +1,12 @@
 from src.vector.vector_say import VectorSay
-from src.vector.vector_banana_eyes import VectorBananaEyes
+from src.vector.vector_bananas import VectorBananas
 
 class ActionResolver():
 
     def __init__(self):
         self.actions = {
-            "!say": VectorSay()
+            "!say": VectorSay(),
+            "!bananas": VectorBananas()
         }
 
     def get(self, command):
