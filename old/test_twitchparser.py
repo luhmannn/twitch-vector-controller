@@ -1,5 +1,5 @@
 import unittest
-import TwitchParser
+from src.parser.twitchparser import TwitchParser
 
 class TestTwitchParser(unittest.TestCase):
  

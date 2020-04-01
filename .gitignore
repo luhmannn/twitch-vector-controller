@@ -126,3 +126,6 @@ dmypy.json
 
 .vscode
 __pycache__
+.env
+.code-workspace
+

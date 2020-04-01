@@ -1,15 +1,37 @@
 import os
-from src.twitchparser import TwitchParser
-from src.chatbot import Chatbot
-from src.actionresolver import ActionResolver
+from src.oauth import Oauth
+from src.util.db import DB
+from src.twitchenv import TwitchEnvironment
+from src.parser.oauthparser import OauthParser
+from src.bot import Bot
+import sentry_sdk
+from sentry_sdk.integrations.logging import LoggingIntegration
+from src.logging import Logging
+from src.actions.actionresolver import ActionResolver
+from src.responsehandler import ResponseFilter
+from src.celery.tasks import vector_say
 
 if __name__ == "__main__":
-    # Get the oauth from .env not included in git
-    twitch_oauth = os.getenv('TWITCH_OAUTH', 'You need to have a .env file with a variable TWITCH_OAUTH set to a value from https://twitchapps.com/tmi/')
-
-    # instantiate dependencies
-    parser = TwitchParser()
-    actionResolver = ActionResolver()
     
-    # Run the chatbot
-    chatbot = Chatbot("irc.chat.twitch.tv", 6667, parser, twitch_oauth, "luhbert", "luhmannn", actionResolver)
+    # setup logging
+    Logging()
+
+    # setup db
+    db = DB('./vector.db')
+    
+    # get env settings
+    twitchenv = TwitchEnvironment()
+    
+    # prepare oauth 
+    oauthParser = OauthParser()
+    oauth = Oauth(db, twitchenv, oauthParser)
+    
+    actions = ActionResolver()
+    response_filter = ResponseFilter(actions, oauth)
+    
+    # run the bot
+    bot = Bot(oauth, twitchenv, response_filter)
+    bot.run()
+    
+    
+    

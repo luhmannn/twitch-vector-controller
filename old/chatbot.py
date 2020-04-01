@@ -47,7 +47,7 @@ class Chatbot():
     def write_in_channel(self, channel, message):
         try:
             self.twitch.send(('PRIVMSG #%s :%s\r\n' % (channel, message)).encode('utf-8'))
-        except Exeption as err:
+        except Exception as err:
             print ("Could not write in chat")
             print (err)
 
